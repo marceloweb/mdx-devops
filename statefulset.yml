@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mendix
+spec:
+  serviceName: mendix
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mendix
+  template:
+    metadata:
+      labels:
+        app: mendix
+    spec:
+      containers:
+      - name: mendix
+        image: marceloweb/demo-app-mendix:v3.4.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: "/build/data/files"
+          name: mendix-data
+        envFrom:
+        - configMapRef:
+            name: mendixapp-configmap  
+      volumes:
+        - hostPath:
+            path: "/home/docker/mendix-files"
+          name: mendix-data

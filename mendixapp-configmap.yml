@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mendixapp-configmap
+data:
+  ADMIN_PASSWORD: Password1!Ba
+  MXRUNTIME_DatabaseType: MySql
+  MXRUNTIME_DatabaseUserName: mendix
+  MXRUNTIME_DatabasePassword: Password1!Ba
+  MXRUNTIME_DatabaseHost: localhost:3306
+  MXRUNTIME_DatabaseName: mendix
